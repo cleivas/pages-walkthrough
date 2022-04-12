@@ -1,17 +1,17 @@
-const img = document.querySelector('img');
+import {Stopwatch} from './modules/Stopwatch.js'
 
-const pingvinImgUrl = new URL('./img/pingvin.jpg', import.meta.url);
-const pingvin2ImgUrl = new URL('./img/pingvin2.jpg', import.meta.url);
+const sw = new Stopwatch();
+console.log(sw);
 
-img.src = pingvinImgUrl.href;
+document.querySelector('button').addEventListener('click', toggleStopWatch);
 
-let isFirstImage = true;
-
-img.addEventListener('click', changeImage);
-
-function changeImage(){
-    //Välj img url beroende på isFirstImage
-    if(isFirstImage)img.src = pingvin2ImgUrl;
-    else img.src = pingvinImgUrl;
-    isFirstImage = !isFirstImage; //Ändra till motsatta
+function toggleStopWatch(){
+    if(sw.isRunning()){
+        sw.stop();
+        document.querySelector('button').innerText = 'Start';
+    }
+    else{
+        sw.start();
+        document.querySelector('button').innerText = 'Stop';
+    }
 }
